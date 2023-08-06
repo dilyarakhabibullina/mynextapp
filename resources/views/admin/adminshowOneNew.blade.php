@@ -6,7 +6,7 @@
 {{$news['text']}}
 </h4>
 <div>
-Это новость из категории номер {{$news['category_id']}} <span style='color:red'>а как здесь вывести название категории?</span>
+Это новость из категории номер {{$news['category_id'] $news->category->slug}} <span style='color:red'> а как здесь вывести название категории?</span>
 
 </div>
 
