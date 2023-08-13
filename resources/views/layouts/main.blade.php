@@ -99,6 +99,8 @@
 
 <script src="{{asset('assets/bootstrap.bundle.min.js') } integrity="sha384-geWF76RCwLtnZ8qwWowPQNguL3RmwHVBC9FhGdlKrxdiJJigb/j/68SIy3Te4Bkz" crossorigin="anonymous"></script>
 
+
+@stack('js')
     </body>
     <x-footer></x-footer>
 </html>

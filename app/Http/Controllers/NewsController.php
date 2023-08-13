@@ -5,7 +5,8 @@ namespace App\Http\Controllers;
 
 //use Illuminate\Contracts\View\View;
 use Illuminate\Http\Request;
-use App\Models;
+use App\Models\News;
+use App\Models\Category;
 
 class NewsController extends Controller
 {
@@ -17,17 +18,27 @@ class NewsController extends Controller
 // dd($news->getAll());
 
    
-    return view ('news.index', ['newsList' => $news->getAll()]);
+    return view ('news.index', 
+    ['newsList' => News::query()->paginate(5)]);
 }
 
        
    
-   public function show($id) {
+//    public function show($id) {
            
-        return view('news.show', ['news' => $this->getNews($id)
+//         return view('news.show', ['news' => $this->getNews($id)
     
-        ]);
-    } 
+//         ]);
+//     } 
+
+
+public function show($id) {
+           
+    return view('news.show', ['news' => News::query()->find($id)
+
+    ]);
+} 
+
 
     public function adminindex(){
    

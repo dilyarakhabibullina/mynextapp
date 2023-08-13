@@ -14,13 +14,28 @@ class News extends Model
 
 protected $table = 'news';
 
-public function getAll(): Collection
-    {
-        return DB::table($this->table)->get();
-    }
+protected $fillable =[
+    'category_id',
+    'title',
+    'text',
+    'author',
+    'isPrivate'
+];
 
-    public function getItemById(int $id): mixed
-    {
-        return DB::table($this->table)->find($id);
-    }
+public function category()
+{
+    return $this->belongsTo(Category::class, 'category_id');
 }
+// public function getAll(): Collection
+//     {
+//         return DB::table($this->table)->get();
+//     }
+
+//     public function getItemById(int $id): mixed
+//     {
+//         return DB::table($this->table)->find($id);
+//     }
+}
+
+
+
