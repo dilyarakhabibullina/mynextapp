@@ -8,11 +8,7 @@
             <button type="button" class="btn btn-sm btn-outline-secondary">Добавить запись</button>
         </div>
       </div>
-      @if($errors->any())
-        @foreach($errors->all() as $error)
-        <x-alert :message="$error" type="danger"></x-alert>
-        @endforeach
-        @endif
+     
 <form method="post" action="{{route('admin.news.update', ['news' =>$news])}}">
     @csrf
     @method('PUT')
@@ -29,14 +25,18 @@
     <div class="form-group">
         <label for="title">Заголовок</label>
         <input type="text" class="form-control" name="title" id="title" value="{{ $news->title}}">
+       @error('title')<strong style="color:red; font-weight:bold"> {{ $message }}</strong>@enderror
+    
     </div> 
     <div class="form-group">
         <label for="text">Содержание</label>
         <input type="text" class="form-control" name="text" id="text" value="{{ $news->text}}">
+        @error('text')<strong style="color:red; font-weight:bold"> {{ $message }}</strong>@enderror
     </div> 
     <div class="form-group">
         <label for="author">Автор</label>
         <input type="text" class="form-control" name="author" id="author" value="{{ $news->author }}">
+        @error('author')<strong style="color:red; font-weight:bold"> {{ $message }}</strong>@enderror
     </div> 
 
     <div class="form-group">

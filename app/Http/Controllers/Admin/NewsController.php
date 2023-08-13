@@ -4,6 +4,8 @@ namespace App\Http\Controllers\Admin;
 use App\Http\Controllers\Controller;
 use App\Models\News;
 use App\Models\Category;
+use App\Http\Requests\Admin\News\Create;
+use App\Http\Requests\Admin\News\Edit;
 use Illuminate\Contracts\View\View;
 use Illuminate\Http\Request;
  
@@ -44,19 +46,19 @@ public function create(){
         ]);
     } 
 
-    public function store(Request $request) {
-          $request->validate([
-'title' => 'required',
-          ]);
+    public function store(Create $request) {
+//           $request->validate([
+// 'title' => 'required',
+//           ]);
      
 
-     $data = $request->only(['category_id', 'title', 'text','author', 'isPrivate']);
+    // $data = $request->only(['category_id', 'title', 'text','author', 'isPrivate']);
           
-          $news = new News($data);
+          $news = new News($request->validated());
           if ($news->save()){
-          return redirect()->route('admin.news.index')->with('success', 'Запись успешно сохранена');
+          return redirect()->route('admin.news.index')->with('success', __('News was saved successfully'));
           }
-          return back()->with('error', 'Не удалось добавить запись');
+          return back()->with('error', __('We cannot save item'));
 //dump($_REQUEST);
     } 
 
@@ -67,17 +69,27 @@ $categories = Category::all();
 return view('admin.news.edit', ['categories'=>$categories, 'news'=>$news]);
     }
 
-    public function update (Request $request, News $news) {
-        $data = $request->only(['category_id', 'title', 'text','author', 'isPrivate']);
-        $news = $news->fill($data);
+    public function update (Edit $request, News $news) {
+        //dd($request->all());
+        // $data = $request->validated();
+        // dd($data);
+        $news = $news->fill($request->validated());
         if ($news->save()){
-            return redirect()->route('admin.news.index')->with('success', 'Запись успешно сохранена');
+            return redirect()->route('admin.news.index')->with('success', __('News was saved successfully'));
             }
-        return back()->with('error', 'Не удалось обновить запись');
+        return back()->with('error', __('We cannot save item'));
+    }
 
 
-
-
+    public function destroy (News $news) {
+        try
+        {
+            $news->delete();
+           return response()->json('ok');
+        } catch (Exception $e){
+            Log::error($e->getMessage(), $e->getTrace());
+            return response()->json('error', 400);
+        }
     }
 
     public function adminindex(){

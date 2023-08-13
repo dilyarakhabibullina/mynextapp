@@ -6,6 +6,7 @@ namespace App\Http\Controllers;
 //use Illuminate\Contracts\View\View;
 use Illuminate\Http\Request;
 use App\Models\News;
+use App\Models\Category;
 
 class NewsController extends Controller
 {
