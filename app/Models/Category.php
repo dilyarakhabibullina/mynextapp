@@ -12,6 +12,13 @@ class Category extends Model
 
     protected $table = 'categories';
 
+    protected $fillable = [
+        'id',
+        'categories',
+        'slug'
+    ];
+
+       
 
 
     public function news(): HasMany

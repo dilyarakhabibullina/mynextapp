@@ -17,9 +17,11 @@ class NewsController extends Controller
 //     $news= app(News::class);
 // dd($news->getAll());
 
-   
+//  dd(['newsList' => News::query()->paginate(5)]);
     return view ('news.index', 
-    ['newsList' => News::query()->paginate(5)]);
+    ['newsList' => News::query()->get()
+    //->paginate(5)
+]);
 }
 
        
@@ -40,17 +42,17 @@ public function show($id) {
 } 
 
 
-    public function adminindex(){
+    // public function adminindex(){
    
-        return view ('admin.adminnewsindex', ['newsList' => $this->getNews()]);
-    }
+    //     return view ('admin.adminnewsindex', ['newsList' => $this->getNews()]);
+    // }
 
-    public function adminshow($id) {
+    // public function adminshow($id) {
            
-        return view('admin.adminshowOneNew', ['news' => $this->getNews($id)
+    //     return view('admin.adminshowOneNew', ['news' => $this->getNews($id)
     
-        ]);
-    } 
+    //     ]);
+    // } 
     
 
 

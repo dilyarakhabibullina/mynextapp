@@ -33,6 +33,6 @@
 @endforelse
     </div>
   </div>
-  {{$newsList->links()}}
+ 
 </div>
 @endsection

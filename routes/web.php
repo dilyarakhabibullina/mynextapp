@@ -4,6 +4,7 @@ use App\Http\Controllers\CategoriesController;
 use App\Http\Controllers\NewsController;
 use App\Http\Controllers\Admin\NewsController as AdminNewsController;
 use App\Http\Controllers\Admin\CategoryController as AdminCategoryController;
+use App\Http\Controllers\Admin\ProfileController as AdminProfileController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Controller;
 
@@ -43,17 +44,30 @@ Route::group(['prefix' =>'admin', 'as' => 'admin.'], static function (){
 
 
     Route::resource('/news', AdminNewsController::class);
-
     Route::resource('/categories', AdminCategoryController::class);
+    Route::resource('/profile', AdminProfileController::class);
+
+
+
+    //Route::resource('/categories', AdminCategoryController::class);
 
     Route::get('/new/{id}', [NewsController::class, 'adminshow'])->name('admin.showOneNew');
 
-    // Route::get('/categories', [AdminCategoryController::class, 'index']);
+    Route::get('/', function () {
+        return view('admin.adminIndex');
+    });
+    
+      
 
     // Route::get('/categories/create', [AdminCategoryController::class, 'create']);
     
  });
+
+ Route::get('/categories', [CategoriesController::class, 'showCategories'])->name('admin.categoriesIndex');
  
  Route::any('/test', function(Request $request) {
     dd(app());
  });
+Auth::routes();
+
+Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
