@@ -45,7 +45,9 @@ Route::group(['prefix' =>'admin', 'as' => 'admin.'], static function (){
 
     Route::resource('/news', AdminNewsController::class);
     Route::resource('/categories', AdminCategoryController::class);
-    Route::resource('/profile', AdminProfileController::class);
+    Route::get('/profile', [AdminProfileController::class, 'index'])->name('profile.index');
+    Route::post('/profile', [AdminProfileController::class, 'update'])->name('profile.update');
+    // Route::resource('/profile', AdminProfileController::class);
 
 
 

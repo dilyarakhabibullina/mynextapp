@@ -64,7 +64,7 @@ class ProfileController extends Controller
         // public function update (Request $request, User $users) {
         //dd($request->all());
         $data = $request->all();
-        dd($data);
+       // dd($data);
 
         $users = $users->fill($request->all());
         if ($users->save()){
