@@ -1,11 +1,11 @@
 @extends('layouts.admin')
 @section('content')
 
-<form method="post" action="{{route('admin.profile.update', ['users' =>$users])}}">
-    @csrf
+
     
 
     <div class="table-responsive small">
+        @include('inc.message')
         <table class="table table-striped table-small">
             <thead>
                 <tr>
@@ -22,22 +22,25 @@
                     <td>{{$user['email']}}</td>
                     <td>{{$user['isAdmin']}}</td>
                     <td>
-
-<label for="notanadmin">
-<input type="radio" name="{{$user['name']}}" @if($user['isAdmin'] === 0) checked @endif> 
+                    <form action="{{route('admin.profile.update', ['users' =>$users])}}" method="post">
+    @csrf
+<input type="radio" name="{{$user['name']}}" value='0' @if($user['isAdmin'] === 0) checked @endif> 
 Не Админ
 </label>
 <label for="admin">
-<input type="radio" name="{{$user['name']}}" @if($user['isAdmin'] === 1) checked @endif>
+<input type="radio" name="{{$user['name']}}" value='1' @if($user['isAdmin'] === 1) checked @endif>
 Админ
 </label>
+
                     </td>
                 </tr>
                 @endforeach
+                
             </tbody>
         </table>
+        <button type="submit" class="btn btn-success">Сохранить</button>
     </div>
-    <button type="submit" class="btn btn-success">Сохранить</button>
+    
 </form>
 
 @endsection

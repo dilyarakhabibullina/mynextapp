@@ -7,7 +7,8 @@ use Illuminate\Http\Request;
 use App\Models\News;
 use App\Models\Category;
 use App\Models\User;
-
+use DB;
+use Illuminate\Support\Facades\DB as FacadesDB;
 
 class ProfileController extends Controller
 {
@@ -61,17 +62,34 @@ class ProfileController extends Controller
      */
     public function update(Request $request, User $users)
     {
+
+        $users = User::all();
+       // dd($users);
+       foreach($users as $user){
+       // dd([$request->input($user['name'])]); 
+        // dd($user->isAdmin);
+        //dd($request->input('ivan@rambler.ru')); 
+           $user->isAdmin = $request->input($user['name']);
+          //  $user->fill([$request->all()]); 
+       // $user->isAdmin = 1;
+        //$request->input('isAdmin');
+        $user->save();
+        
+        }
+        return redirect()->route('admin.profile.update')->with('success', __('Roles were saved successfully'));
+     
+       // dd($user);
         // public function update (Request $request, User $users) {
         //dd($request->all());
-        $data = $request->all();
-       // dd($data);
-
-        $users = $users->fill($request->all());
-        if ($users->save()){
-            return redirect()->route('admin.news.profile')->with('success', __('Profile was updated successfully'));
-            }
-        return back()->with('error', __('We cannot save item'));
-    }
+    //    $data = $request;
+    //    dd($data);
+      // DB::table('users')->update(['isAdmin' => $request->input('isAdmin')]);
+      
+    //     if ($users->save()){
+    //         return redirect()->route('admin.news.profile')->with('success', __('Profile was updated successfully'));
+    //         }
+    //     return back()->with('error', __('We cannot save item'));
+    
 
 
     // //dd($request->all());
@@ -89,8 +107,6 @@ class ProfileController extends Controller
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(string $id)
-    {
-        //
-    }
+   
+}
 }

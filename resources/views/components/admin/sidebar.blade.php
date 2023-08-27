@@ -7,7 +7,7 @@
         <div class="offcanvas-body d-md-flex flex-column p-0 pt-lg-3 overflow-y-auto">
           <ul class="nav flex-column">
             <li class="nav-item ">
-              <a class="nav-link @if(request()->routeIs('index')) active @endif" href="news/create">
+              <a class="nav-link @if(request()->routeIs('index')) active @endif" href="/admin">
                 
                 Панель управления              </a>
             </li>

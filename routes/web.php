@@ -7,6 +7,7 @@ use App\Http\Controllers\Admin\CategoryController as AdminCategoryController;
 use App\Http\Controllers\Admin\ProfileController as AdminProfileController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Controller;
+use App\Http\Controllers\Account\IndexController as AccountController;
 
 /*
 |--------------------------------------------------------------------------
@@ -21,7 +22,7 @@ use App\Http\Controllers\Controller;
 
 Route::get('/', function () {
     return view('welcome');
-});
+})->name('welcomeRoute');
 
 
 // Route::get('/news', function (){
@@ -36,7 +37,11 @@ Route::get('/categories', [CategoriesController::class, 'showCategories']);
 
 Route::get('/categories/{cid}', [CategoriesController::class, 'showNewsByCategory']);
 
-Route::group(['prefix' =>'admin', 'as' => 'admin.'], static function (){
+Route::group(['middleware' => 'auth'], function(){
+    Route::get('/account', AccountController::class)->name('account');
+
+
+    Route::group(['prefix' =>'admin', 'as' => 'admin.'], static function (){
 
     // Route::get('/news', [AdminNewsController::class, 'index'])->name('admin.newsList');
 
@@ -57,6 +62,7 @@ Route::group(['prefix' =>'admin', 'as' => 'admin.'], static function (){
 
     Route::get('/', function () {
         return view('admin.adminIndex');
+    });
     });
     
       

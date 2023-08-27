@@ -14,14 +14,7 @@
         </div>
       <div class="table-responsive small">
         @include('inc.message')
-        <label for="isPrivate">Приватная ли новость?</label> c
-        <select id="filter">
-            <option value=1>yes</option>
-            <option value=0>no</option>
-        <select>
-          <button CLASS="btn small filter_btn">FILTER</button>
-
-        <table class="table table-striped table-sm">
+            <table class="table table-striped table-sm">
           <thead>
             <tr>
               <th scope="col">#</th>
