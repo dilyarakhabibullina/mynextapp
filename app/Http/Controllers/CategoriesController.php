@@ -23,6 +23,7 @@ class CategoriesController extends Controller
 //dd(DB::table('news')->where('category_id', $cid)->get());
         //return view('admin.news.index', ['newsList' => News::all()]);
       //  return view('admin.news.index', ['newsList' => News::where('isPrivate', 1)->get()]);
-        return view('news.index', ['newsList' => News:: where('category_id', $cid)->get()]);
+        return view('news.index', ['newsList' => News:: where('category_id', $cid)->get()
+      ,]);
     }
 }
