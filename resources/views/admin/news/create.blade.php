@@ -37,11 +37,17 @@
         <label for="author">Автор</label>
         <input type="text" class="form-control" name="author" id="author">
     </div> 
+
     <div class="form-group">
-        <label for="status">Приватная ли новость?</label>
-        <select class="form-control" name="status" id="status" value="{{ old('text')}}">
-            <option @if(old('status') ==='yes') selected @endif>yes</option>
-            <option @if(old('status') ==='no') selected @endif>no</option>
+        <label for="image">Изображение</label>
+        <input type="file" class="form-control" name="image" id="image">
+    </div>
+
+    <div class="form-group">
+        <label for="isPrivate">Приватная ли новость?</label>
+        <select class="form-control" name="isPrivate" id="isPrivate" value="{{ old('isPrivate')}}">
+            <option @if(old('isPrivate') ==='yes') selected @endif value=1>yes</option>
+            <option @if(old('isPrivate') ==='no') selected @endif value=0>no</option>
         <select>
     </div> 
 </br>
