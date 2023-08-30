@@ -12,9 +12,8 @@ class AppServiceProvider extends ServiceProvider
      */
     public function register(): void
     {
-        //
+        $this->app->bind(App\Services\Contracts\Parser::class, app\Services\ParserService::class);
     }
-
     /**
      * Bootstrap any application services.
      */

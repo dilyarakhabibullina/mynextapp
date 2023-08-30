@@ -8,7 +8,7 @@ use App\Http\Controllers\Admin\ProfileController as AdminProfileController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Controller;
 use App\Http\Controllers\Account\IndexController as AccountController;
-
+use App\Http\Controllers\Admin\ParserController as AdminParserController;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -52,6 +52,7 @@ Route::group(['middleware' => 'auth'], function(){
     Route::resource('/categories', AdminCategoryController::class);
     Route::get('/profile', [AdminProfileController::class, 'index'])->name('profile.index');
     Route::post('/profile', [AdminProfileController::class, 'update'])->name('profile.update');
+    Route::get('/parser', AdminParserController::class)->name('parser');
     // Route::resource('/profile', AdminProfileController::class);
 
 
