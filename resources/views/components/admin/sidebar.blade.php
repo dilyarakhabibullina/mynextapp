@@ -7,7 +7,7 @@
         <div class="offcanvas-body d-md-flex flex-column p-0 pt-lg-3 overflow-y-auto">
           <ul class="nav flex-column">
             <li class="nav-item ">
-              <a class="nav-link @if(request()->routeIs('index')) active @endif" href="news/create">
+              <a class="nav-link @if(request()->routeIs('index')) active @endif" href="/admin">
                 
                 Панель управления              </a>
             </li>
@@ -18,7 +18,9 @@
               </a>
             </li> -->
             <li class="nav-item">
-                <a class="nav-link " href="{{ route('admin.categories.index') }}" style="@if(request()->routeIs('admin.news.*')) color: red @endif">
+                <a class="nav-link " 
+                href="{{ route('admin.categories.index') }}" 
+                style="@if(request()->routeIs('admin.news.*')) color: red @endif">
                     <span data-feather="file" class="align-text-bottom"></span>
                     Категории+
                 </a>
@@ -36,7 +38,7 @@
             </li>
             </li>
             <li class="nav-item">
-              <a class="nav-link d-flex align-items-center gap-2" href="news/create">
+              <a class="nav-link d-flex align-items-center gap-2" href="{{ route('admin.profile.index') }}">
                 
                 Пользователи
               </a>
