@@ -14,7 +14,7 @@ class NewsController extends Controller
     
    public function index(){
 
-/    return view ('news.index', 
+    return view ('news.index', 
     ['newsList' => News::query()->get()
     //->paginate(5)
 ]);

@@ -19,7 +19,7 @@
             </li> -->
             <li class="nav-item">
                 <a class="nav-link " 
-                href="{{ route('admin.categoriesIndex') }}" 
+                href="{{ route('admin.categories.index') }}" 
                 style="@if(request()->routeIs('admin.news.*')) color: red @endif">
                     <span data-feather="file" class="align-text-bottom"></span>
                     Категории+

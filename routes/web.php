@@ -9,6 +9,8 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Controller;
 use App\Http\Controllers\Account\IndexController as AccountController;
 use App\Http\Controllers\Admin\ParserController as AdminParserController;
+use App\Http\Controllers\SocialProvidersController;
+
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -74,6 +76,20 @@ Route::group(['middleware' => 'auth'], function(){
 
  Route::get('/categories', [CategoriesController::class, 'showCategories'])->name('admin.categoriesIndex');
  
+// 
+
+Route::group(['middleware' => 'guest'], function () {
+    Route::get('/{driver}/redirect', [SocialProvidersController::class, 'redirect'])
+        ->where('driver', '\w+')
+        ->name('social-providers.redirect');
+
+    Route::get('/{driver}/callback', [SocialProvidersController::class, 'callback'])
+        ->where('driver', '\w+')
+        ->name('social-providers.callback');
+});
+
+
+
  Route::any('/test', function(Request $request) {
     dd(app());
  });
